@@ -48,7 +48,7 @@ const Countdown=({endTime,name}:{endTime: Date,name:string}):ReactElement=>{
         initial={"closed"}
         whileInView={"open"}
         exit={"closed"}
-        className="schoolName">{name} ({months[endMonth]} {endDay}, {endYear}, {endHour >= 12 ? endHour % 12 : endHour}:{endMinute.toString().padStart(2,'0')}:{endSecond.toString().padStart(2, '0')})</motion.h1>
+        className="schoolName">{name} ({months[endMonth]} {endDay}, {endYear}, {endHour > 12 ? endHour % 12 : endHour}:{endMinute.toString().padStart(2,'0')}:{endSecond.toString().padStart(2, '0')} {endHour < 12 ? "am" : "pm"})</motion.h1>
     <motion.div className="CountdownWrapper">
       <motion.div 
         transition={{duration:.15,delay:.15,}}
