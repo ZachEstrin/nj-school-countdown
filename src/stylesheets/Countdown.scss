@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+.schoolName{
+  font-family: "Funnel Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  color: rgba(220,220,220,.5);
+}
+.CountdownWrapper {
+  height: 100%;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  gap: 1.5rem;
+  filter: 
+    drop-shadow(0 0 .5rem #266ff450)
+    drop-shadow(0 0 5rem #266ff430);
+  .CountdownDays {
+    font-family: 'Dela Gothic One';
+    color: #266ff4;
+    font-size: 12.5vw;
+    line-height: 1;
+  }
+  .CountdownTimer {
+    font-family: "Share Tech Mono";
+    color: #266ff4;
+    font-size: 12.5vw;
+    line-height: 1;
+  }
+  // gap: ;
+}

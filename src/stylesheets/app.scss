@@ -1,0 +1,142 @@
+body {
+  background-color: rgba(32,32,32);
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+#PageHeader {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  translate: -50% 0%;
+  width: 100%;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  z-index: 99;
+  background: linear-gradient(
+    to bottom, 
+    #151515, 
+    transparent
+  );
+  #Logo {
+    font-family: 'Dela Gothic One';
+    font-size: 2.5rem;
+    color: #266ff4e0;
+    line-height: 1;
+    text-shadow: 
+      0 0 1rem #202020,
+      0 0 2.5rem #05050590;
+  }
+  .ContentWrapper {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+}
+#root {
+  position: relative;
+  &,*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+  }
+  h1,h2,h3,p{&,*{
+    margin: 0 !important;
+  }}
+  width: 100%;
+  &::selection {
+    background: #fff;
+    color: #050505;
+  }
+}
+header {
+  height: 100dvh;
+  width: 100%;
+  padding: 2rem;
+  padding-top: 4.5rem !important;
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    #151515,
+    #050505
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.SectHeader {
+  font-family: 'Dela Gothic One';
+  color: #266ff4;
+  width: 100%;
+  font-size: 5rem;
+  line-height: 1;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #45454595;
+  filter: drop-shadow(0 0 2.5rem #266ff4a0);
+}
+.Section {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #050505;
+}
+.ContentWrapper {
+  height: 100%;
+  width: clamp(10vmin, 150vmin, calc(100dvw - 4rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: .5rem;
+}
+.RowWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  height: 100%;
+  width: 100%;
+  .RowItem {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .5rem;
+    position: relative;
+  }
+}
+.icon {
+  font-size: 16.5rem;
+  color: #ffffffe0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  filter: 
+    drop-shadow(0 0 .5rem #266ff450)
+    drop-shadow(0 0 5rem #266ff4);
+  transition: .35s;
+  &:hover {
+    filter: 
+      drop-shadow(0 0 .5rem #266ff450)
+      drop-shadow(0 0 2.5rem #266ff4e0)
+      drop-shadow(0 0 5rem #266ff4);
+    scale: 125%;
+    rotate: 10deg;
+  }
+}
