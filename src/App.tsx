@@ -30,13 +30,9 @@ const App=({})=>{
     setPageTitle(DistEnum[params.dist as keyof typeof DistEnum]);
   },[params]);
   const SchoolOption=({name,dist}:{name:string,dist:string}):ReactElement=>{
-    return(<>
-      <motion.p
-        className="SchoolName"
-        onClick={() => updateDist(dist)}>
-        {name}
-      </motion.p>
-    </>);
+    return(<motion.p
+      className="SchoolName"
+      onClick={()=>updateDist(dist)}>{name}</motion.p>);
   };
   return(<>
     <Helmet>
