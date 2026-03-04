@@ -29,16 +29,15 @@ body {
     font-size: 2.5rem;
     color: #266ff4e0;
     line-height: 1;
+    transition: .35s;
     text-shadow: 
       0 0 1rem #202020,
       0 0 2.5rem #05050590;
       &:hover{
         cursor:pointer;
-        transition:0.2s;
         filter:
           drop-shadow(0 0 .25rem #266ff450)
-          drop-shadow(0 0 1.25rem #266ff4e0)
-          drop-shadow(0 0 2.5rem #266ff4);
+          drop-shadow(0 0 .5rem #266ff4e0);
       }
   }
   .ContentWrapper {
@@ -112,11 +111,13 @@ header {
   font-family: 'Dela Gothic One';
   color: #266ff4;
   width: 100%;
-  font-size: 5rem;
+  font-size: 4.5rem;
   line-height: 1;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #45454595;
-  filter: drop-shadow(0 0 2.5rem #266ff4a0);
+  filter: 
+    drop-shadow(0 0 .5rem #266ff450)
+    drop-shadow(0 0 5rem #266ff430);
 }
 .PageTextHeader {
   font-family: 'Dela Gothic One';
@@ -125,12 +126,18 @@ header {
   font-size: 6.5vw;
   line-height: 1;
   text-align: center;
+  filter: 
+    drop-shadow(0 0 .5rem #266ff450)
+    drop-shadow(0 0 5rem #266ff430);
 }
 .SectPara {
   font-family: "Funnel Sans", sans-serif;
   font-weight: 300;
   font-size: 1.5rem;
   color: rgba(220,220,220,.65);
+  filter: 
+    drop-shadow(0 0 .5rem #ffffff50)
+    drop-shadow(0 0 5rem #ffffff30);
 }
 .Section {
   position: relative;
@@ -221,7 +228,6 @@ header {
     rotate: 10deg;
   }
 }
-
 .GridWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -233,7 +239,12 @@ header {
   width: 100%;
   filter: drop-shadow(0 0 2.5rem #45454545);
   .GridItem {
-    background: #151515;
+    // background: #151515;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      #252525,
+      #151515
+    );
     border: 1px solid #45454595;
     border-radius: .5rem;
     padding: .5rem .75rem;
@@ -266,7 +277,6 @@ header {
     }
   }
 }
-
 a {
   cursor: pointer;
   color: #266ff4;
@@ -275,4 +285,18 @@ a {
   &:hover {
     color: #fff;
   }
+}
+.grid {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-size: 40px 40px;
+  z-index: 99;
+  background: pink;
+  background-image:
+    linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
 }

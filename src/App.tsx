@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { Helmet } from 'react-helmet-async';
 import { useAtom } from 'jotai';
-import { DerivedParamsAtom, PageTitleAtom, urlParams, type IParamsAtom } from './store.ts';
+import { DerivedParamsAtom, DistEnum, PageTitleAtom, urlParams, type IParamsAtom } from './store.ts';
 const App=({})=>{
   const[params,setParams]=useAtom(DerivedParamsAtom);
   const[pageTitle,setPageTitle]=useAtom(PageTitleAtom);
@@ -18,19 +18,17 @@ const App=({})=>{
   const changeParam=(param:string):void=>{
     if(urlParams.get(param)!==params[param as keyof IParamsAtom]){
       const url=new URL(window.location.href);
-      if(params[param as keyof IParamsAtom]!==""){
+      if(params[param as keyof IParamsAtom]!=="")
         url.searchParams.set(param,params[param as keyof IParamsAtom]);
-      }else{
-        url.searchParams.delete(param);
-      }
+      else url.searchParams.delete(param);
       window.history.pushState({},'',url);
     }
   };
   useEffect(()=>{
     changeParam("dist");
     changeParam("targ");
+    setPageTitle(DistEnum[params.dist as keyof typeof DistEnum]);
   },[params]);
-
   const SchoolOption=({name,dist}:{name:string,dist:string}):ReactElement=>{
     return(<>
       <motion.p
@@ -38,8 +36,8 @@ const App=({})=>{
         onClick={() => updateDist(dist)}>
         {name}
       </motion.p>
-    </>)
-  }
+    </>);
+  };
   return(<>
     <Helmet>
       <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -56,8 +54,6 @@ const App=({})=>{
       <motion.header className={`${params.dist==null?"homepage":""}`}>
         <motion.div className='ContentWrapper'>
           {params.dist==""?<>
-            {/* if homepage */}
-            {/* to be replaced */}
             <motion.div className="CenterWrapper">
               <motion.h1 
                 variants={variants}
@@ -139,24 +135,24 @@ const App=({})=>{
             </motion.div>
           </>
           :params.dist=="laz"?<Countdown 
-            endTime={new Date(2026, 5, 17, 13, 10, 0)} 
-            startTime={new Date(2026, 7, 27, 8, 30, 0)}
+            endTime={new Date(2026,5,17,13,10,0)} 
+            startTime={new Date(2026,7,27,8,30,0)}
             name="Robert R. Lazar Middle School"/>
           :params.dist=="wehs"?<Countdown 
-            endTime={new Date(2026, 5, 18, 14, 35, 0)}
-            startTime={new Date(2026, 7, 31, 8, 0, 0)}
+            endTime={new Date(2026,5,18,14,35,0)}
+            startTime={new Date(2026,7,31,8,0,0)}
             name="West Essex High School"/>
           :params.dist=="wems"?<Countdown
-            endTime={new Date(2026,5,18, 14, 35, 0)}
-            startTime={new Date(2026, 7, 31, 8, 0, 0)}
+            endTime={new Date(2026,5,18,14,35,0)}
+            startTime={new Date(2026,7,31,8,0,0)}
             name="West Essex Middle School"/>
           :params.dist=="mcst"?<Countdown 
-            endTime={new Date(2026, 5, 15, 12, 0, 0)} 
-            startTime={new Date(2026, 7, 27, 8, 0, 0)}
+            endTime={new Date(2026,5,15,12,0,0)} 
+            startTime={new Date(2026,7,27,8,0,0)}
             name="Morris County School of Technology"/>
           :params.dist=="mths"?<Countdown 
-            endTime={new Date(2026, 5, 17, 11, 55, 0)} 
-            startTime={new Date(2026, 7, 27, 7, 25, 0)}
+            endTime={new Date(2026,5,17,11,55,0)} 
+            startTime={new Date(2026,7,27,7,25,0)}
             name="Montville Township High School"/>
           :params.dist=="mhhs"?<Countdown
             endTime={new Date(2026,5,15,12,51,0)}
@@ -165,7 +161,6 @@ const App=({})=>{
             endTime={new Date(2026,5,15,12,16,0)}
             name="Morris Knolls High School"/>
           :null}
-          
         </motion.div>
       </motion.header>
       <motion.div className="Section AboutUs">
@@ -199,6 +194,8 @@ const App=({})=>{
               whileInView={"open"}
               exit={"closed"}
               className='RowItem'>
+                {/*//! doesnt work, cant inspect at school */}
+                {/* <motion.div className='grid'></motion.div> */}
                 <FontAwesomeIcon className='icon' icon={faCalendarDays}/>
             </motion.div>
           </motion.div>
@@ -206,5 +203,5 @@ const App=({})=>{
       </motion.div>
     </motion.div>
   </>);
-}
+};
 export default App;

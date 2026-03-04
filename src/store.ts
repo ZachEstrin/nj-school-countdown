@@ -1,7 +1,16 @@
 import { atom } from "jotai";
 export const PageTitleAtom=atom("Home");
+export const DistEnum={
+  "laz":"Robert R. Lazar Middle School",
+  "wehs":"West Essex High School",
+  "wems":"West Essex Middle School",
+  "mcst":"Morris County School of Technology",
+  "mths":"Montville Township High School",
+  "mhhs":"Morris Hills High School",
+  "mkhs":"Morris Knolls High School",
+}
 export interface IParamsAtom {
-  dist:string;
+  dist:keyof typeof DistEnum;
   targ:string;
 }
 export const urlParams=new URLSearchParams(window.location.search);

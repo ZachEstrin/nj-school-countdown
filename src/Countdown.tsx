@@ -96,5 +96,5 @@ const Countdown=({endTime, startTime, name}:{endTime: Date,startTime?:Date,name:
       </motion.div>
     </motion.div>
   </>);
-}
+};
 export default Countdown;
