@@ -78,14 +78,35 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  &.homepage {
+    height: 100dvh;
+    padding-top: 6.5rem !important;
+    padding-bottom: 4rem !important;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 2.5rem;
+    z-index: 20;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    translate: -50% 0%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      #050505
+    );
+  }
 }
 .CenterWrapper {
-  height: 80%;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1.5rem;
 }
 .SectHeader {
   font-family: 'Dela Gothic One';
@@ -101,7 +122,7 @@ header {
   font-family: 'Dela Gothic One';
   color: #266ff4;
   width: 100%;
-  font-size: 4vw;
+  font-size: 6.5vw;
   line-height: 1;
   text-align: center;
 }
@@ -113,7 +134,7 @@ header {
 }
 .Section {
   position: relative;
-  height: 100dvh;
+  height: fit-content;
   width: 100%;
   padding: 2rem;
   display: flex;
@@ -121,10 +142,40 @@ header {
   align-items: center;
   flex-direction: column;
   background: #050505;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 2.5rem;
+    z-index: 20;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    translate: -50% 0%;
+    background: linear-gradient(
+      to top,
+      transparent,
+      #050505
+    );
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 2.5rem;
+    z-index: 20;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    translate: -50% 0%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      #050505
+    );
+  }
 }
 .ContentWrapper {
   height: 100%;
-  width: clamp(10vmin, 150vmin, calc(100dvw - 4rem));
+  width: clamp(10vmin, max(150vmin, 80vw), calc(100dvw - 4rem));
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -171,38 +222,57 @@ header {
   }
 }
 
-.SchoolNameWrapper{
-  display:flex;
-  align-items: center;
+.GridWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   justify-content: center;
-  flex-direction: column;
-  padding-top:1px;
-  gap:10px;
-}
-.SchoolDistrictLabel{
-  display:flex;
-  flex-direction: column;
-  font-family: 'Dela Gothic One';
-  color: #5280d4;
+  align-items: center;
+  gap: .5rem;
+  flex-grow: 1;
   width: 100%;
-  font-size: 1.5vw;
-  line-height: 1;
-  text-align: center;
-}
-.SchoolName{
-  display:flex;
-  flex-direction:column;
-  transition: 0.1s;
-  &:hover{
-    font-size:19px;
-    cursor:pointer;
-    filter:
-      drop-shadow(0 0 .5rem #266ff450)
-      drop-shadow(0 0 2.5rem #266ff4e0)
-      drop-shadow(0 0 5rem #266ff4);
+  filter: drop-shadow(0 0 2.5rem #45454545);
+  .GridItem {
+    background: #151515;
+    border: 1px solid #45454595;
+    border-radius: .5rem;
+    padding: .5rem .75rem;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .5rem;
+    h2 {
+      font-family: 'Dela Gothic One';
+      color: #e0e0e0;
+      font-size: min(1.35rem,2vw);
+      line-height: 1;
+      font-weight: 400;
+      // padding-bottom: .5rem;
+    }
+    .SchoolName {
+      font-family: "Funnel Sans", sans-serif;
+      font-weight: 300;
+      font-size: .875rem;//max(.875rem,1.125vw);
+      line-height: 1;
+      color: #c0c0c0;
+      user-select: none;
+      cursor: pointer;
+      transition: .25s;
+      &:hover {
+        color: #266ff4;
+      }
+    }
   }
-  font-family: 'Dela Gothic One';
+}
+
+a {
+  cursor: pointer;
   color: #266ff4;
-  font-size: 18px;
-  gap:6px;
+  text-decoration: none;
+  transition: .25s;
+  &:hover {
+    color: #fff;
+  }
 }

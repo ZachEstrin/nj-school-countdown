@@ -8,11 +8,25 @@
   font-size: 1.125rem;
   color: rgba(220,220,220,.5);
 }
+.back{
+  font-family: "Funnel Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  color: rgba(220,220,220,.5);
+  user-select: none;
+  cursor: pointer;
+  transition: .25s;
+  z-index: 9;
+  &:hover {
+    color: #266ff4;
+  }
+}
 .CountdownWrapper {
   height: 100%;
   flex-grow: 1;
   width: 100%;
   flex-direction: column;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -15,9 +15,11 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.2.0",
+    "jotai": "^2.18.0",
     "motion": "^12.34.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.13.1",
     "react-timer-hook": "^4.0.5"
   },
