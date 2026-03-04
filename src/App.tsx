@@ -1,5 +1,5 @@
 //@ts-ignore
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import type { ReactElement } from 'react';
 import Countdown, { variants } from './Countdown.tsx';
 import { motion } from "motion/react";
@@ -8,31 +8,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { Helmet } from 'react-helmet-async';
 import { useAtom } from 'jotai';
-import { PageTitleAtom } from './store.ts';
+import { DerivedParamsAtom, PageTitleAtom, urlParams, type IParamsAtom } from './store.ts';
 const App=({})=>{
-  const urlParams=new URLSearchParams(window.location.search);
-  const dist=urlParams.get('dist');
-  const targ=urlParams.get('targ'); //targ = target (End Date / Start Date)
-  const[distValue,setDistValue]=useState(dist);
-  const[targValue,setTargValue]=useState(targ);
+  const[params,setParams]=useAtom(DerivedParamsAtom);
   const[pageTitle,setPageTitle]=useAtom(PageTitleAtom);
-  const updateDist=(newDist:string):void=>{
-    const url=new URL(window.location.href);
-    url.searchParams.set('dist', newDist);
-    window.history.pushState({},'',url);
-    setDistValue(newDist);
-  }
-  const removeDist=():void=>{
-    const url=new URL(window.location.href);
-    url.searchParams.delete('dist');
-    window.history.pushState({},'',url);
-    setDistValue(null);
-  }
-  const updateTarg=(newTarg:string):void=>{
-    const url=new URL(window.location.href);
-    url.searchParams.set('targ', newTarg);
-    setTargValue(newTarg)
-  }
+  const updateDist=(newDist:string):void=>{setParams(["dist",newDist]);};
+  const removeDist=():void=>{setParams(["dist",""]);};
+  const updateTarg=(newTarg:string):void=>{setParams(["targ",newTarg]);};
+  const changeParam=(param:string):void=>{
+    if(urlParams.get(param)!==params[param as keyof IParamsAtom]){
+      const url=new URL(window.location.href);
+      if(params[param as keyof IParamsAtom]!==""){
+        url.searchParams.set(param,params[param as keyof IParamsAtom]);
+      }else{
+        url.searchParams.delete(param);
+      }
+      window.history.pushState({},'',url);
+    }
+  };
+  useEffect(()=>{
+    changeParam("dist");
+    changeParam("targ");
+  },[params]);
 
   const SchoolOption=({name,dist}:{name:string,dist:string}):ReactElement=>{
     return(<>
@@ -56,9 +53,9 @@ const App=({})=>{
           <motion.h1 id="Logo" onClick={removeDist}>NJSCD</motion.h1>
         </motion.div>
       </motion.div>
-      <motion.header className={`${dist==null?"homepage":""}`}>
+      <motion.header className={`${params.dist==null?"homepage":""}`}>
         <motion.div className='ContentWrapper'>
-          {dist==null?<>
+          {params.dist==""?<>
             {/* if homepage */}
             {/* to be replaced */}
             <motion.div className="CenterWrapper">
@@ -141,30 +138,30 @@ const App=({})=>{
               </motion.div>
             </motion.div>
           </>
-          :dist=="laz"?<Countdown 
+          :params.dist=="laz"?<Countdown 
             endTime={new Date(2026, 5, 17, 13, 10, 0)} 
             startTime={new Date(2026, 7, 27, 8, 30, 0)}
             name="Robert R. Lazar Middle School"/>
-          :dist=="wehs"?<Countdown 
+          :params.dist=="wehs"?<Countdown 
             endTime={new Date(2026, 5, 18, 14, 35, 0)}
             startTime={new Date(2026, 7, 31, 8, 0, 0)}
             name="West Essex High School"/>
-          :dist=="wems"?<Countdown
+          :params.dist=="wems"?<Countdown
             endTime={new Date(2026,5,18, 14, 35, 0)}
             startTime={new Date(2026, 7, 31, 8, 0, 0)}
             name="West Essex Middle School"/>
-          :dist=="mcst"?<Countdown 
+          :params.dist=="mcst"?<Countdown 
             endTime={new Date(2026, 5, 15, 12, 0, 0)} 
             startTime={new Date(2026, 7, 27, 8, 0, 0)}
             name="Morris County School of Technology"/>
-          :dist=="mths"?<Countdown 
+          :params.dist=="mths"?<Countdown 
             endTime={new Date(2026, 5, 17, 11, 55, 0)} 
             startTime={new Date(2026, 7, 27, 7, 25, 0)}
             name="Montville Township High School"/>
-          :dist=="mhhs"?<Countdown
+          :params.dist=="mhhs"?<Countdown
             endTime={new Date(2026,5,15,12,51,0)}
             name="Morris Hills High School"/>
-          :dist=="mkhs"?<Countdown
+          :params.dist=="mkhs"?<Countdown
             endTime={new Date(2026,5,15,12,16,0)}
             name="Morris Knolls High School"/>
           :null}
