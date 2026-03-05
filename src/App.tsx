@@ -1,5 +1,4 @@
-//@ts-ignore
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactElement } from 'react';
 import Countdown, { variants } from './Countdown.tsx';
 import { motion } from "motion/react";
@@ -9,7 +8,7 @@ import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { Helmet } from 'react-helmet-async';
 import { useAtom } from 'jotai';
 import { DerivedParamsAtom, DistEnum, PageTitleAtom, urlParams, type IParamsAtom } from './store.ts';
-const App=({})=>{
+const App=({}):ReactElement=>{
   const[params,setParams]=useAtom(DerivedParamsAtom);
   const[pageTitle,setPageTitle]=useAtom(PageTitleAtom);
   const updateDist=(newDist:string):void=>{setParams(["dist",newDist]);};
