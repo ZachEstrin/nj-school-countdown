@@ -78,7 +78,7 @@ header {
   align-items: center;
   flex-direction: column;
   &.homepage {
-    height: 100dvh;
+    height: 120dvh !important;
     padding-top: 6.5rem !important;
     padding-bottom: 4rem !important;
   }

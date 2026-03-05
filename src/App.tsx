@@ -46,7 +46,7 @@ const App=({}):ReactElement=>{
           <motion.h1 id="Logo" onClick={removeDist}>NJSCD</motion.h1>
         </motion.div>
       </motion.div>
-      <motion.header className={`${params.dist==null?"homepage":""}`}>
+      <motion.header className={`${params.dist==""?"homepage":""}`}>
         <motion.div className='ContentWrapper'>
           {params.dist==""?<>
             <motion.div className="CenterWrapper">
@@ -126,6 +126,21 @@ const App=({}):ReactElement=>{
                       <SchoolOption name="West Essex High School" dist="wehs"/>
                       <SchoolOption name="West Essex Middle School" dist="wems"/>
                   </motion.div>
+                  <motion.div 
+                    variants={variants}
+                    initial={"closed"}
+                    whileInView={"open"}
+                    exit={"closed"}
+                    transition={{
+                      duration: .15,
+                      delay: .75,
+                    }}
+                    className="GridItem">
+                      <motion.h2 className='SchoolDistrictLabel'>Essex County Schools of Technology</motion.h2>
+                      <SchoolOption name="Essex County Newark Tech" dist="ecnt"/>
+                      <SchoolOption name="Essex County West Caldwell Tech" dist="ecwc"/>
+                      <SchoolOption name="Essex County Donald M. Payne Sr. Tech" dist="ecd"/>
+                  </motion.div>
               </motion.div>
             </motion.div>
           </>
@@ -152,6 +167,18 @@ const App=({}):ReactElement=>{
           :params.dist=="mhhs"?<Countdown
             endTime={new Date(2026,5,15,12,51,0)}
             name="Morris Hills High School"/>
+          :params.dist=="ecnt"?<Countdown
+            endTime={new Date(2026,6,18,12,0,0)}
+            name="Essex County Newark Tech"/>
+          :params.dist=="ecnt"?<Countdown
+            endTime={new Date(2026,6,18,12,0,0)}
+            name="Essex County Newark Tech"/>
+          :params.dist=="ecwc"?<Countdown
+            endTime={new Date(2026,6,18,12,0,0)}
+            name="Essex County West Caldwell Tech"/>
+          :params.dist=="ecd"?<Countdown
+            endTime={new Date(2026,6,18,12,0,0)}
+            name="Essex County Donald M. Payne Sr. Tech."/>
           :params.dist=="mkhs"?<Countdown
             endTime={new Date(2026,5,15,12,16,0)}
             name="Morris Knolls High School"/>
