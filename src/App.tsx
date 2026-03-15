@@ -8,6 +8,12 @@ import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { Helmet } from 'react-helmet-async';
 import { useAtom } from 'jotai';
 import { DerivedParamsAtom, DistEnum, PageTitleAtom, urlParams, type IParamsAtom } from './store.ts';
+export const ani={
+  variants:variants,
+  initial:"closed",
+  whileInView:"open",
+  exit:"closed",
+}
 const App=({}):ReactElement=>{
   const[params,setParams]=useAtom(DerivedParamsAtom);
   const[pageTitle,setPageTitle]=useAtom(PageTitleAtom);
@@ -37,7 +43,7 @@ const App=({}):ReactElement=>{
     <Helmet>
       <link rel="icon" type="image/svg+xml" href="/vite.svg" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{`NJSCD - ${pageTitle}`}</title> 
+      <title>{`NJSCD - ${pageTitle || "Home"}`}</title>
       {/* TODO: implement naming with jotai atom */}
     </Helmet>
     <motion.div className='AppWrapper'>
@@ -50,26 +56,14 @@ const App=({}):ReactElement=>{
         <motion.div className='ContentWrapper'>
           {params.dist==""?<>
             <motion.div className="CenterWrapper">
-              <motion.h1 
-                variants={variants}
-                initial={"closed"}
-                whileInView={"open"}
-                exit={"closed"}
+              <motion.h1 {...ani}
                 className='PageTextHeader'>Counting Down...</motion.h1>
-              <motion.p 
-                variants={variants}
-                initial={"closed"}
-                whileInView={"open"}
-                exit={"closed"}
+              <motion.p {...ani}
                 style={{textAlign:"center"}}
                 className='SectPara'>
                   Count down the days to your summer break with NJSCD! Select from our schools below or <a href="#">Request One Here</a>
               </motion.p>
-              <motion.div
-                variants={variants}
-                initial={"closed"}
-                whileInView={"open"}
-                exit={"closed"}
+              <motion.div {...ani}
                 className='GridWrapper'>
                   <motion.div 
                     variants={variants}
@@ -113,10 +107,7 @@ const App=({}):ReactElement=>{
                       <SchoolOption name="Morris Knolls High School" dist="mkhs"/>
                   </motion.div>
                   <motion.div 
-                    variants={variants}
-                    initial={"closed"}
-                    whileInView={"open"}
-                    exit={"closed"}
+                    {...ani}
                     transition={{
                       duration: .15,
                       delay: .6,
@@ -189,18 +180,10 @@ const App=({}):ReactElement=>{
         <motion.div className='ContentWrapper'>
           <motion.div className='RowWrapper'>
             <motion.div className='RowItem'>
-              <motion.h1 
-                variants={variants}
-                initial={"closed"}
-                whileInView={"open"}
-                exit={"closed"}
+              <motion.h1 {...ani}
                 className='SectHeader'>About Us</motion.h1>
               <motion.p
-                className='SectPara'
-                variants={variants}
-                initial={"closed"}
-                whileInView={"open"}
-                exit={"closed"}>
+                className='SectPara'{...ani}>
                   Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque 
                   faucibus ex sapien vitae pellentesque sem placerat. In id cursus 
                   mi pretium tellus duis convallis. Tempus leo eu aenean sed diam 

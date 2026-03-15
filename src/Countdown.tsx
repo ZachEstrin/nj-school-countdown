@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import './stylesheets/Countdown.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretSquareLeft, faCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import App from './App.tsx';
+import App, { ani } from './App.tsx';
 import { DerivedParamsAtom } from './store.ts';
 import { useAtom } from 'jotai';
 
@@ -60,35 +60,23 @@ const Countdown=({endTime, startTime, name}:{endTime: Date,startTime?:Date,name:
   return(<>
     <motion.h1 
       transition={{duration:.15,delay:.15,}}
-      variants={variants}
-      initial={"closed"}
-      whileInView={"open"}
-      exit={"closed"}
+      {...ani}
       className="schoolName">{name} ({months[endMonth]} {endDay}, {endYear}, {endHour > 12 ? endHour % 12 : endHour}:{endMinute.toString().padStart(2,'0')}:{endSecond.toString().padStart(2, '0')} {endHour < 12 ? "am" : "pm"})</motion.h1>
     <motion.h1 
       transition={{duration:.15,delay:.15,}}
       onClick={(e)=>{removeDist();}}
-      variants={variants}
-      initial={"closed"}
-      whileInView={"open"}
-      exit={"closed"}
+      {...ani}
       className="back"><FontAwesomeIcon icon={faCircleLeft}/>  Go Back</motion.h1>
     <motion.div className="CountdownWrapper">
       <motion.div 
         transition={{duration:.15,delay:.15,}}
-        variants={variants}
-        initial={"closed"}
-        whileInView={"open"}
-        exit={"closed"}
+        {...ani}
         className="CountdownDays">
           {days} Days
       </motion.div>
       <motion.div 
         transition={{duration:.15,delay:.15,}}
-        variants={variants}
-        initial={"closed"}
-        whileInView={"open"}
-        exit={"closed"}
+        {...ani}
         className="CountdownTimer">
           <motion.span>
             {hours.toString().padStart(2,"0")}:{minutes.toString().padStart(2,"0")}:{seconds.toString().padStart(2,"0")}
